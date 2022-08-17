@@ -27,11 +27,15 @@ function App() {
     }
   };
 
+  const buttonClick = (item) => {
+    setCountriesFound([item]);
+  };
+
   return (
     <>
       <FinderCountries value={countryToFind} onChange={handlerFinderChange} />
       <div>
-        <CountriesFound countries={countriesFound} />
+        <CountriesFound countries={countriesFound} onClick={buttonClick} />
       </div>
     </>
   );

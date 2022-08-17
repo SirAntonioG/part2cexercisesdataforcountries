@@ -1,6 +1,6 @@
 import React from "react";
 
-const CountriesFound = ({ countries }) => {
+const CountriesFound = ({ countries, onClick }) => {
   if (countries.length === 1) {
     return (
       <div>
@@ -31,13 +31,12 @@ const CountriesFound = ({ countries }) => {
       <div>
         {countries.map((item, i) => (
           <div key={i}>
-            <p>{item.name.common}</p>
+            <span>{item.name.common}</span>
+            <button onClick={(e) => onClick(item)}>show</button>
           </div>
         ))}
       </div>
     );
-  } else {
-    return <p>"Type something to find countries"</p>;
   }
 };
 
