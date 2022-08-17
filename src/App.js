@@ -9,9 +9,7 @@ function App() {
   const [countriesFound, setCountriesFound] = useState([]);
 
   useEffect(() => {
-    console.log("effect");
     axios.get("https://restcountries.com/v3.1/all").then((res) => {
-      console.log("promise fulfilled");
       setCountries(res.data);
     });
   }, []);
@@ -20,14 +18,13 @@ function App() {
     setCountryToFind(event.target.value);
     if (event.target.value === "") {
       setCountriesFound([]);
+    } else {
+      const regexp = new RegExp(event.target.value, "i");
+      const countriesAux = countries.filter((item) =>
+        regexp.test(item.name.common)
+      );
+      setCountriesFound(countriesAux);
     }
-    const regexp = new RegExp(event.target.value, "i");
-    const countriesAux = countries
-      .filter((item) => regexp.test(item.name.common))
-      .map((item) => item.name.common);
-    countriesAux.length > 10
-      ? setCountriesFound(["Too many matches, specify another filter"])
-      : setCountriesFound(countriesAux);
   };
 
   return (
