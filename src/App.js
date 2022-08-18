@@ -7,26 +7,11 @@ function App() {
   const [countries, setCountries] = useState([]);
   const [countryToFind, setCountryToFind] = useState("");
   const [countriesFound, setCountriesFound] = useState([]);
-  const [weather, setWeather] = useState({});
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  // let latlng = [];
   useEffect(() => {
     axios.get("https://restcountries.com/v3.1/all").then((res) => {
       setCountries(res.data);
     });
-    // axios
-    //   .get(
-    //     "https://api.openweathermap.org/data/2.5/weather?lat=" +
-    //       latlng[0] +
-    //       "&lon=" +
-    //       latlng[1] +
-    //       "&appid=" +
-    //       process.env.REACT_APP_API_KEY
-    //   )
-    //   .then((res) => {
-    //     setWeather(res.data);
-    //   });
   }, []);
 
   const handlerFinderChange = (event) => {
@@ -50,11 +35,7 @@ function App() {
     <>
       <FinderCountries value={countryToFind} onChange={handlerFinderChange} />
       <div>
-        <CountriesFound
-          countries={countriesFound}
-          onClick={buttonClick}
-          weather={weather}
-        />
+        <CountriesFound countries={countriesFound} onClick={buttonClick} />
       </div>
     </>
   );
