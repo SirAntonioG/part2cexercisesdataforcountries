@@ -15,7 +15,7 @@ const CountriesFound = ({ countries, onClick }) => {
         )
         .then((res) => {
           const dataWeather = {
-            temperature: res.data.main.temp - 273.15,
+            temperature: (res.data.main.temp - 273.15).toFixed(2),
             wind: res.data.wind.speed,
             icon: `http://openweathermap.org/img/wn/${res.data.weather[0].icon}@2x.png`,
           };
@@ -42,7 +42,7 @@ const CountriesFound = ({ countries, onClick }) => {
         </ul>
         <img src={countries[0].flags.png} alt="" />
         <h3>Weather in {countries[0].capital[0]}</h3>
-        <p>Temperature: {weather.temperature.toFixed(2)} Celcius</p>
+        <p>Temperature: {weather.temperature} Celcius</p>
         <img src={weather.icon} alt="" />
         <p>Wind: {weather.wind} m/s</p>
       </div>
